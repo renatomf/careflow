@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.careflow.patientservice.dto.PatientRequestDTO;
 import com.careflow.patientservice.dto.PatientResponseDTO;
 import com.careflow.patientservice.mapper.PatientMapper;
 import com.careflow.patientservice.model.Patient;
@@ -25,5 +26,10 @@ public class PatientService {
         .toList();
 
     return patientResponseDTOs;
+  }
+
+  public PatientResponseDTO createPatient(PatientRequestDTO patientRequestDTO) {
+    Patient newPatient = patientRepository.save(PatientMapper.toModel(patientRequestDTO));
+    return PatientMapper.toDTO(newPatient);
   }
 }
