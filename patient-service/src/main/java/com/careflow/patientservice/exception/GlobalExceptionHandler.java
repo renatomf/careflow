@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -41,6 +42,6 @@ public class GlobalExceptionHandler {
 
     Map<String, String> errors = new HashMap<>();
     errors.put("message", "Patient not found");
-    return ResponseEntity.notFound().build();
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errors);
   }
 }
